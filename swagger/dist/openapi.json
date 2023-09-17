@@ -1,0 +1,82 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "News API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/news/{id}": {
+            "put": {
+                "summary": "Update a news item",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "UUID of the news item",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "News data to update",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "text": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "News updated successfully"
+                    },
+                    "400": {
+                        "description": "Bad Request, Invalid ID format."
+                    },
+                    "404": {
+                        "description": "Not Found, News item not found."
+                    }
+                }
+            }
+        },
+        "/news/{id}/publish": {
+            "patch": {
+                "summary": "Publish a news item",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "UUID of the news item",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "News successfully published."
+                    },
+                    "400": {
+                        "description": "Bad Request, Invalid ID format."
+                    },
+                    "404": {
+                        "description": "Not Found, News item not found."
+                    }
+                }
+            }
+        }
+    }
+}
